@@ -5,7 +5,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import responseTime from 'response-time';
 import bodyParser from 'body-parser';
-
+import proxy from 'express-http-proxy';
 import { renderServerSideApp } from './renderServerSideApp';
 import { todoRoutes } from './todoApi';
 
@@ -35,6 +35,16 @@ app.use(
 );
 
 app.use(morgan('tiny'));
+
+app.use(
+  '/api/',
+  proxy('http://localhost:63835', {
+    proxyReqOptDecorator(opts) {
+      opts.headers['x-forwarded-host'] = 'localhost:3000';
+      return opts;
+    }
+  })
+);
 
 // Demo API endpoints
 app.use(todoRoutes());
