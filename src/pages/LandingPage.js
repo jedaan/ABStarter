@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loginAction } from '../data/actions/index';
+import { logInRequest } from '../redux/actions/userSessionActions';
 import { bindActionCreators } from 'redux';
 
 class LandingPage extends Component {
@@ -35,7 +35,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleLogIn: bindActionCreators(loginAction, dispatch)
+    handleLogIn: bindActionCreators(logInRequest, dispatch)
   };
 }
 

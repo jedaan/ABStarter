@@ -1,4 +1,5 @@
 import { getAppEnv } from '../config/env';
+import serialize from 'serialize-javascript';
 
 const env = getAppEnv();
 const { NODE_ENV, PUBLIC_URL = '' } = env.raw;
@@ -73,7 +74,7 @@ const jsScripts = bundles => {
     .join('');
 };
 
-export const indexHtml = ({ helmet, serverData, markup, bundles }) => {
+export const indexHtml = ({ helmet, store, markup, bundles }) => {
   const htmlAttrs = helmet.htmlAttributes.toString();
   const bodyAttrs = helmet.bodyAttributes.toString();
 
@@ -99,7 +100,7 @@ export const indexHtml = ({ helmet, serverData, markup, bundles }) => {
 
         <script>
           window.process = ${env.forIndexHtml};
-          window.__SERVER_DATA__ = ${JSON.stringify(serverData)}
+          window.INITIAL_STATE = ${serialize(store.getState())}
           window.__ASSET_MANIFEST__ = ${JSON.stringify(assetManifest)}
         </script>
       </body>

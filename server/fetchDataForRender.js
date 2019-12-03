@@ -1,12 +1,13 @@
 import React from 'react';
 import ssrPrepass from 'react-ssr-prepass';
 import chalk from 'chalk';
-import createStore from './createStore';
+import store from '../src/redux/config/createStore';
 
 export const fetchDataForRender = (ServerApp, req) => {
   let data = {};
+  let reduxStore = store;
   return ssrPrepass(
-    <ServerApp req={req} data={data} location={req.url} />,
+    <ServerApp req={req} store={reduxStore} location={req.url} />,
     element => {
       if (element && element.type && element.type.fetchData) {
         return element.type.fetchData(req).then(d => {
@@ -24,7 +25,7 @@ export const fetchDataForRender = (ServerApp, req) => {
       }
     }
   ).then(() => {
-    return data;
+    return store;
   });
 };
 
