@@ -28,7 +28,7 @@ const ServerApp = ({ context, store, location, req }) => {
 export const renderServerSideApp = (req, res) => {
   let reduxStore = store;
   Loadable.preloadAll()
-    .then(() => fetchDataForRender(ServerApp, req))
+    // .then(() => fetchDataForRender(ServerApp, req))
     .then(data => renderApp(ServerApp, reduxStore, req, res));
 };
 
