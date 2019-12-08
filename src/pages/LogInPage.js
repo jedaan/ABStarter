@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Button, FormGroup, FormControl, FormLabel } from 'react-bootstrap';
 
 class LogInPage extends Component {
   constructor() {
@@ -13,24 +14,40 @@ class LogInPage extends Component {
 
   componentDidMount() {}
 
-  handleLogIn = () => {
-    console.log('login clicked ... ');
+  validateForm = () => {
+    let { email, password } = this.state;
+    return email.length > 0 && password.length > 0;
   };
 
+  handleSubmit = event => {
+    event.preventDefault();
+  };
   render() {
+    let { email, password } = this.state;
     return (
-      <div>
-        <button type="button" onClick={() => this.handleLogIn}>
-          Log In...
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            this.props.history.push('/home');
-          }}
-        >
-          Log In...
-        </button>
+      <div className="container_login_style">
+        <form onSubmit={this.handleSubmit}>
+          <FormGroup controlId="email">
+            <FormLabel>Email</FormLabel>
+            <FormControl
+              autoFocus
+              type="email"
+              value={email}
+              onChange={e => this.setState({ email: e.target.value })}
+            />
+          </FormGroup>
+          <FormGroup controlId="password">
+            <FormLabel>Password</FormLabel>
+            <FormControl
+              value={password}
+              onChange={e => this.setState({ password: e.target.value })}
+              type="password"
+            />
+          </FormGroup>
+          <Button block disabled={!this.validateForm()} type="submit">
+            Login
+          </Button>
+        </form>
       </div>
     );
   }

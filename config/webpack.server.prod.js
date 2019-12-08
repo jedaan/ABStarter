@@ -58,7 +58,8 @@ module.exports = {
             }
           },
           'sass-loader',
-          'import-glob-loader'
+          'import-glob-loader',
+          'postcss-loader'
         ]
       }
     ]

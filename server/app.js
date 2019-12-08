@@ -7,7 +7,6 @@ import responseTime from 'response-time';
 import bodyParser from 'body-parser';
 import proxy from 'express-http-proxy';
 import { renderServerSideApp } from './renderServerSideApp';
-import { todoRoutes } from './todoApi';
 
 const { PUBLIC_URL = '' } = process.env;
 
@@ -45,9 +44,6 @@ app.use(
     }
   })
 );
-
-// Demo API endpoints
-app.use(todoRoutes());
 
 app.use(
   responseTime((_req, res, time) => {

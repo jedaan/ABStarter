@@ -7,6 +7,7 @@ import { renderRoutes } from 'react-router-config';
 import Routes from './Routes';
 import { LOGIN_SUCCESS } from './redux/actions/userSessionActions';
 import store from './redux/config/createStore';
+// import './styles/tailwind.css';
 
 let userData = localStorage.getItem('user');
 

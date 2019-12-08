@@ -17,11 +17,18 @@ class LandingPage extends Component {
     this.props.history.push('/home');
   };
 
+  handleLogIn2 = () => {
+    this.props.history.push('/log');
+  };
+
   render() {
     return (
       <div>
         Landing Page
         <button type="button" onClick={this.handleLogIn}>
+          Log In...
+        </button>
+        <button type="button" onClick={this.handleLogIn2}>
           Log In...
         </button>
       </div>
