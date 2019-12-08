@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
 class LoginT extends Component {
-  constructor() {
-    super();
-  }
-
   componentDidMount() {}
 
   render() {

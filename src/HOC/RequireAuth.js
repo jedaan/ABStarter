@@ -8,9 +8,9 @@ export default ComposedComponent => {
       const { authenticated } = this.props;
 
       switch (authenticated) {
-        // case false:
-        // case null || undefined:
-        //   return <Redirect to="/" />;
+        case false:
+        case null || undefined:
+          return <Redirect to="/" />;
 
         default:
           return <ComposedComponent {...this.props} />;
