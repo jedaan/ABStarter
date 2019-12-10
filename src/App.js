@@ -1,6 +1,7 @@
 import React from 'react';
 import { renderRoutes } from 'react-router-config';
-// import Head from './components/Head';
+import { Container } from 'react-bootstrap';
+import Head from './components/Head';
 
 class App extends React.Component {
   constructor() {
@@ -12,8 +13,8 @@ class App extends React.Component {
     let { route } = this.props;
     return (
       <div>
-        {/* <Head /> */}
-        <div className="page_container">{renderRoutes(route.routes)}</div>
+        <Head />
+        <Container>{renderRoutes(route.routes)}</Container>
       </div>
     );
   }
